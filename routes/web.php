@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('downloadpage');
-//    return view('upload');
+//    return view('downloadpage');
+    return view('uploadpage');
 //    return view('home');
 //    return view('welcome');
 });
@@ -25,8 +25,6 @@ Route::prefix('api')->group(function () {
 
             Route::match(['get', 'post'], '/{id}/attachment/upload', 'FileController@upload');
 
-
-
 //    Route::get('users', function () {
 ////         Matches The "/admin/users" URL
 //    });
@@ -36,7 +34,8 @@ Route::prefix('api')->group(function () {
 });
 
 
-Route::post('/image/upload/', 'FileController@upload')->name('image.upload');
+Route::any('/image/upload/', 'FileController@upload')->name('image.upload');
+//Route::post('/image/upload/', 'FileController@upload')->name('image.upload');
 //Route::get('/image/upload/', 'FileController@upload')->name('image.upload');
 
 
