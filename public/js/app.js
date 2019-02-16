@@ -1812,11 +1812,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
   }
 });
+
+function request(val) {
+  var xhr = new XMLHttpRequest();
+  var params = 'type' + '=' + encodeURIComponent(val);
+  xhr.open('GET', 'api/v1/documents/10/attachment/upload/?' + params, true);
+  xhr.responseType = 'text';
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      xhr.onreadystatechange = null;
+
+      if (xhr.status == 200) {
+        var data = xhr.response;
+        console.log(data);
+        var json = JSON.parse(data); // console.log(json);
+        // statusPin = json;
+        // setColorPins(json);                                                                                     // function sets up for all id on the page got from request
+      }
+    }
+  };
+
+  xhr.send(null); // body
+}
 
 /***/ }),
 
@@ -36723,32 +36752,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Main component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Main component test.\n                "
-              )
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Main component")]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "example-2" } }, [
+            _c("button", { on: { click: _vm.greet } }, [
+              _vm._v("Поприветствовать")
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "\n                    Main component test.\n                "
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -48793,7 +48819,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-Vue.component('main-component', __webpack_require__(/*! ./components/MainComponent.vue */ "./resources/js/components/MainComponent.vue").default);
+Vue.component('main-component', __webpack_require__(/*! ./components/MainComponent.vue */ "./resources/js/components/MainComponent.vue").default); // Vue.component('file-upload', require('./components/FileUpload.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

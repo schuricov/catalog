@@ -93,7 +93,7 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
-            <main-component></main-component>
+            {{--<main-component></main-component>--}}
         </div>
     <script src="{{ asset('js/app.js') }}"></script>
     </body>

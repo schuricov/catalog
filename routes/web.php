@@ -12,8 +12,35 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('downloadpage');
+//    return view('upload');
+//    return view('home');
+//    return view('welcome');
 });
+
+
+Route::prefix('api')->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::prefix('documents')->group(function () {
+
+            Route::match(['get', 'post'], '/{id}/attachment/upload', 'FileController@upload');
+
+
+
+//    Route::get('users', function () {
+////         Matches The "/admin/users" URL
+//    });
+
+        });
+    });
+});
+
+
+Route::post('/image/upload/', 'FileController@upload')->name('image.upload');
+//Route::get('/image/upload/', 'FileController@upload')->name('image.upload');
+
+
+//Route::get('/{id}/attachment/upload', 'FileController@upload')->name('image.upload');
 
 Auth::routes();
 
