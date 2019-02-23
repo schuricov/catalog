@@ -4,9 +4,18 @@
 
     <div class="container">
 
-        <h1>Upload</h1>
+        {{--<h1>Upload</h1>--}}
 
-        <file-upload></file-upload>
+        <uploads></uploads>
+        {{--<file-upload></file-upload>--}}
+
+        {{--<paginator></paginator>--}}
+
+    @isset ($path)
+
+            {{$path}}
+            {{--<img src="{{ asset('/storage/' . $path) }}">--}}
+        @endisset
 
     </div>
 
