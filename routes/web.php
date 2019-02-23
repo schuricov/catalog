@@ -12,34 +12,22 @@
 */
 
 Route::get('/', function () {
-//    return view('downloadpage');
     return view('uploadpage');
-//    return view('home');
-//    return view('welcome');
 });
-
 
 Route::prefix('api')->group(function () {
     Route::prefix('v1')->group(function () {
         Route::prefix('documents')->group(function () {
 
-            Route::match(['get', 'post'], '/{id}/attachment/upload', 'FileController@upload');
-
-//    Route::get('users', function () {
-////         Matches The "/admin/users" URL
-//    });
+            Route::get('/', 'FileController@getAll');
+            Route::get('/{document}/attachment/download/preview', 'FileController@getDocumentJpg');
+            Route::get('/{document}/attachment/download', 'FileController@getDocumentPdf');
+            Route::post('/{document}/attachment/upload', 'FileController@upload');
+            Route::delete('/{document}', 'FileController@delDocumentPdf');
 
         });
     });
 });
-
-
-Route::any('/image/upload/', 'FileController@upload')->name('image.upload');
-//Route::post('/image/upload/', 'FileController@upload')->name('image.upload');
-//Route::get('/image/upload/', 'FileController@upload')->name('image.upload');
-
-
-//Route::get('/{id}/attachment/upload', 'FileController@upload')->name('image.upload');
 
 Auth::routes();
 
