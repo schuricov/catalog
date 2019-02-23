@@ -157,7 +157,7 @@
                     })
 
             },
-            getPage(page = 1){
+            getPage(page){
 
                 this.current = page;
 
@@ -177,7 +177,8 @@
                 let form = new FormData();
                 axios.delete(file, form)
                     .then(responce => {
-                        this.getPage();
+                        this.getPage(this.current);
+                        console.log(this.current);
                     })
                     .catch(error => {
                         console.log(error);
